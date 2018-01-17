@@ -40,19 +40,19 @@ RSpec.describe Contact, type: :model do
   end
 
   it 'should accept just names and a company' do
-    newContact = Contact.new(first_name: 'Joe', last_name: 'Ziemba', company: 'Filbert Corp.')
+    newContact = Contact.new(first_name: 'Joe', last_name: 'Ziemba', company: 'ConsenSys')
 
     expect(newContact.save).to be true
   end
 
   it 'should accept and persist all inputs' do
-    newContact = Contact.new(first_name: 'Joe', last_name: 'Ziemba', email: 'test@test.com', phone: '2155555555', company: 'Filbert Corp.')
+    newContact = Contact.new(first_name: 'Joe', last_name: 'Ziemba', email: 'test@test.com', phone: '2155555555', company: 'ConsenSys')
 
     expect(newContact.save).to be true
     expect(newContact.first_name).to eq('Joe')
     expect(newContact.last_name).to eq('Ziemba')
     expect(newContact.email).to eq('test@test.com')
     expect(newContact.phone).to eq('2155555555')
-    expect(newContact.company).to eq('Filbert Corp.')
+    expect(newContact.company).to eq('ConsenSys')
   end
 end
