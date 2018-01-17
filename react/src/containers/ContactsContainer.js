@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContactTile from '../components/ContactTile';
 
 class ContactsContainer extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class ContactsContainer extends Component {
     return(
       <div>
         YAY
+        <ContactTile />
       </div>
     )
   }
