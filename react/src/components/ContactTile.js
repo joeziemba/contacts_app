@@ -3,7 +3,14 @@ import React from 'react';
 const ContactTile = (props) => {
 
   return(
-    <div>Oh look a contact</div>
+    <div>
+      {props.firstName}
+      {props.lastName}
+      {props.email}
+      {props.phone}
+      {props.company}
+    </div>
+
   )
 }
 

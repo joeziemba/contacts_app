@@ -7,6 +7,7 @@ class ContactsContainer extends Component {
     this.state = {
       contacts: []
     }
+    this.getContacts = this.getContacts.bind(this);
   }
 
   // Custom Functions
@@ -24,15 +25,25 @@ class ContactsContainer extends Component {
   // Lifecycle Functions
 
   componentDidMount() {
-    getContacts()
+    this.getContacts()
   }
 
   render() {
-
+    let contactList = this.state.contacts.map(c => {
+      return(
+        <ContactTile
+          key={c.id}
+          firstName={c.first_name}
+          lastName={c.last_name}
+          email={c.email}
+          phone={c.phone}
+          company={c.company}
+        />
+      )
+    })
     return(
       <div>
-        YAY
-        <ContactTile />
+        {contactList}
       </div>
     )
   }
