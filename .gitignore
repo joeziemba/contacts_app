@@ -20,3 +20,7 @@
 
 Gemfile.lock
 package-lock.json
+/app/assets/javascripts/bundle.js
+/react/coverage
+.env
+/public/assets
