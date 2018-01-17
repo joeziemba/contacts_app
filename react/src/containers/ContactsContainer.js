@@ -5,14 +5,27 @@ class ContactsContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      contacts: []
     }
   }
 
-  // Put your functions here
-  // functionName(argument) => {
-  //
-  // }
+  // Custom Functions
+
+  getContacts() {
+    fetch('/api/v1/contacts')
+    .then(response => response.json())
+    .then(body => {
+      this.setState({
+        contacts: body
+      })
+    })
+  }
+
+  // Lifecycle Functions
+
+  componentDidMount() {
+    getContacts()
+  }
 
   render() {
 
