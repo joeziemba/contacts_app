@@ -46,3 +46,5 @@ exclude_paths:
 - db/
 - vendor/
 - app/assets/
+- spec/
+- react/coverage/
