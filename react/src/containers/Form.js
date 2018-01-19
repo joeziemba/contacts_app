@@ -20,7 +20,10 @@ class SubmissionForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Custom Methods
+
   clearForm() {
+    debugger
     this.setState({
       firstName: '',
       lastName: '',
@@ -42,11 +45,11 @@ class SubmissionForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let formPayload = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      emailAddress: this.state.emailAddress,
-      phoneNumber: this.state.phoneNumber,
-      companyName: this.state.companyName
+      first_name: this.state.firstName,
+      last_name: this.state.lastName,
+      email: this.state.emailAddress,
+      phone: this.state.phoneNumber,
+      company: this.state.companyName
     }
     fetch('api/v1/contacts', {
       credentials: 'same-origin',
@@ -54,20 +57,45 @@ class SubmissionForm extends Component {
       body: JSON.stringify(formPayload),
       headers: {'Content-Type': 'application/json'}
     })
-    .then(response => {
-      response.ok ? props.getContacts() : return response.json();
+    .then(response => this.processResponse(response))
+    .then(body => {
+      debugger
+      this.clearForm()
+      debugger
+      this.props.getContacts()
     })
-    .then(data => {
+    .catch(body => {
+      debugger;
       this.setState({
-        errors: data.errors
+        errors: body.data.errors
       })
     })
   }
 
-  render() {
+  processResponse(response) {
+    return new Promise((resolve, reject) => {
+      let func;
+      response.status < 400 ? func = resolve : func = reject;
+      response.json().then(data => func({
+        'status': response.status,
+        'statusText': response.statusText,
+        'data': data
+      }));
+    });
+  }
 
+  // Lifecycle Methods
+
+  render() {
+    let formErrors = ''
+    if(this.state.errors.length > 0) {
+      this.state.errors.forEach((err) => {
+        formErrors += `<li>${err}</li>`
+      })
+    }
     return(
       <div>
+        <ul id='form-errors' dangerouslySetInnerHTML={{__html: formErrors}}></ul>
         <form action='' onSubmit={this.handleSubmit}>
           <TextField
             fieldName='firstName'

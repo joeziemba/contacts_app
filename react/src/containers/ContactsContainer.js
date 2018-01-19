@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 // Component Imports
 import ContactTile from '../components/ContactTile';
+import SubmissionForm from './Form';
 
 class ContactsContainer extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ContactsContainer extends Component {
     this.getContacts = this.getContacts.bind(this);
   }
 
-  // Custom Functions
+  // Custom Methods
 
   getContacts() {
     fetch('/api/v1/contacts')
@@ -25,7 +26,7 @@ class ContactsContainer extends Component {
     })
   }
 
-  // Lifecycle Functions
+  // Lifecycle Methods
 
   componentDidMount() {
     this.getContacts()
@@ -46,6 +47,9 @@ class ContactsContainer extends Component {
     })
     return(
       <div>
+        <SubmissionForm
+          getContacts={this.getContacts}
+        />
         {contactList}
       </div>
     )

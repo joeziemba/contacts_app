@@ -9,7 +9,7 @@ const TextField = (props) => {
       <input
         type={props.fieldType}
         name={props.fieldName}
-        value={props.value}
+        value={props.fieldValue}
         onChange={props.changeFunction}
       />
     </div>
