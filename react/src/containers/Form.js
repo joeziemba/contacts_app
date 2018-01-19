@@ -12,10 +12,23 @@ class SubmissionForm extends Component {
       lastName: '',
       emailAddress: '',
       phoneNumber: '',
-      companyName: ''
+      companyName: '',
+      errors: []
     }
+    this.clearForm    = this.clearForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  clearForm() {
+    this.setState({
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      phoneNumber: '',
+      companyName: '',
+      errors: []
+    })
   }
 
   handleChange(e){
@@ -28,7 +41,27 @@ class SubmissionForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('You did it!')
+    let formPayload = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      emailAddress: this.state.emailAddress,
+      phoneNumber: this.state.phoneNumber,
+      companyName: this.state.companyName
+    }
+    fetch('api/v1/contacts', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(response => {
+      response.ok ? props.getContacts() : return response.json();
+    })
+    .then(data => {
+      this.setState({
+        errors: data.errors
+      })
+    })
   }
 
   render() {
