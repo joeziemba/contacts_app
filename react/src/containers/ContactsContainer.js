@@ -1,4 +1,7 @@
+// React Imports
 import React, { Component } from 'react';
+
+// Component Imports
 import ContactTile from '../components/ContactTile';
 
 class ContactsContainer extends Component {
