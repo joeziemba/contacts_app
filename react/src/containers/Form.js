@@ -95,46 +95,65 @@ class SubmissionForm extends Component {
     }
     return(
       <div>
-        <ul id='form-errors' dangerouslySetInnerHTML={{__html: formErrors}}></ul>
-        <form action='' onSubmit={this.handleSubmit}>
-          <TextField
-            fieldName='firstName'
-            fieldType='text'
-            fieldLabel='First Name:'
-            fieldValue={this.state.firstName}
-            changeFunction={this.handleChange}
-          />
-          <TextField
-            fieldName='lastName'
-            fieldType='text'
-            fieldLabel='Last Name:'
-            fieldValue={this.state.lastName}
-            changeFunction={this.handleChange}
-          />
-          <TextField
-            fieldName='emailAddress'
-            fieldType='email'
-            fieldLabel='Email:'
-            fieldValue={this.state.emailAddress}
-            changeFunction={this.handleChange}
-          />
-          <TextField
-            fieldName='phoneNumber'
-            fieldType='tel'
-            fieldLabel='Phone:'
-            fieldValue={this.state.phoneNumber}
-            changeFunction={this.handleChange}
-          />
-          <TextField
-            fieldName='companyName'
-            fieldType='text'
-            fieldLabel='Company:'
-            fieldValue={this.state.companyName}
-            changeFunction={this.handleChange}
-          />
-          <input type='submit' value='Submit' />
-        </form>
+      <div className='contact-tile-header'>
+        Add New Contact
       </div>
+      <div className='cell large-12 contact-tile'>
+        <form action='' onSubmit={this.handleSubmit}>
+        <div className='grid-x '>
+            <div className='cell medium-2'>
+              <TextField
+                fieldName='firstName'
+                fieldType='text'
+                fieldLabel='First Name'
+                fieldValue={this.state.firstName}
+                changeFunction={this.handleChange}
+              />
+            </div>
+            <div className='cell medium-2'>
+              <TextField
+                fieldName='lastName'
+                fieldType='text'
+                fieldLabel='Last Name'
+                fieldValue={this.state.lastName}
+                changeFunction={this.handleChange}
+              />
+            </div>
+            <div className='cell medium-3'>
+              <TextField
+                fieldName='emailAddress'
+                fieldType='email'
+                fieldLabel='Email'
+                fieldValue={this.state.emailAddress}
+                changeFunction={this.handleChange}
+              />
+            </div>
+            <div className='cell medium-2'>
+              <TextField
+                fieldName='phoneNumber'
+                fieldType='tel'
+                fieldLabel='Phone'
+                fieldValue={this.state.phoneNumber}
+                changeFunction={this.handleChange}
+              />
+            </div>
+            <div className='cell medium-2'>
+              <TextField
+                fieldName='companyName'
+                fieldType='text'
+                fieldLabel='Company'
+                fieldValue={this.state.companyName}
+                changeFunction={this.handleChange}
+              />
+            </div>
+            <div className='cell medium-1'>
+              <input type='submit' value='Submit' />
+            </div>
+        </div>
+      </form>
+      <ul id='form-errors' dangerouslySetInnerHTML={{__html: formErrors}}></ul>
+      </div>
+    </div>
     )
   }
 }

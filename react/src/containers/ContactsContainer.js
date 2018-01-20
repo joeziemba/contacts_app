@@ -42,15 +42,31 @@ class ContactsContainer extends Component {
           email={c.email}
           phone={c.phone}
           company={c.company}
+          tileClass='contact-tile'
         />
       )
     })
     return(
-      <div>
+      <div className='wrapper'>
         <SubmissionForm
           getContacts={this.getContacts}
         />
-        {contactList}
+        <div className='grid-x' id='contact-container'>
+          <div className='cell'>
+            <ContactTile
+              firstName='First Name'
+              lastName='Last Name'
+              email='Email'
+              phone='Phone'
+              company='Company'
+              tileClass='contact-tile-header'
+            />
+          </div>
+          <div className='cell contact-list'>
+
+            {contactList}
+          </div>
+        </div>
       </div>
     )
   }

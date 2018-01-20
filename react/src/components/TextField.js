@@ -4,14 +4,14 @@ import React from 'react';
 const TextField = (props) => {
 
   return(
-    <div className='formField'>
-      <label htmlFor={props.fieldName}>{props.fieldLabel}</label>
+    <div>
       <input
         type={props.fieldType}
         name={props.fieldName}
         value={props.fieldValue}
         onChange={props.changeFunction}
       />
+      <label htmlFor={props.fieldName}>{props.fieldLabel}</label>
     </div>
   )
 }
