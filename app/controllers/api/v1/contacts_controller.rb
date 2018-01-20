@@ -1,6 +1,29 @@
 class Api::V1::ContactsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
+
   def index
     @contacts = Contact.all
     render json: @contacts
   end
+
+  def create
+    newContact = Contact.new(contact_params)
+    if newContact.save
+      render json: newContact
+    else
+      render json: { errors: newContact.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def contact_params
+    params.require(:contact).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :phone,
+      :company
+    )
+    end
 end
