@@ -8,10 +8,10 @@ const ContactFilter = (props) => {
   props.sort ? sortClass = 'active' : null
   return(
     <div className='cell' id='contact-filter'>
-      <div className={`button ${filterClass}`} onClick={props.filterFunction}>
+      <div id='filter-button' className={`button ${filterClass}`} onClick={props.filterFunction}>
         Show .com emails
       </div>
-      <div className={`button ${sortClass}`} onClick={props.sortFunction}>
+      <div id='sort-button' className={`button ${sortClass}`} onClick={props.sortFunction}>
         Sort By Email
       </div>
     </div>
