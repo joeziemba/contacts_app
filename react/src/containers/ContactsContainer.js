@@ -125,7 +125,7 @@ class ContactsContainer extends Component {
             />
           </div>
           <div className='cell contact-list'>
-            {this.renderContacts()}
+            {this.state.contacts.length > 0 ? this.renderContacts() : null}
           </div>
         </div>
       </div>
