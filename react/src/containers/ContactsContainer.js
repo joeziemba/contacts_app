@@ -17,9 +17,20 @@ class ContactsContainer extends Component {
     this.getContacts = this.getContacts.bind(this);
     this.toggleFilter = this.toggleFilter.bind(this);
     this.toggleSort = this.toggleSort.bind(this);
+    this.deleteContact = this.deleteContact.bind(this);
   }
 
   // Custom Methods
+
+  deleteContact(event) {
+    event.preventDefault()
+    fetch(`/api/v1/contacts/${event.target.id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(response => this.getContacts())
+  }
 
   getContacts() {
     fetch('/api/v1/contacts')
@@ -69,12 +80,14 @@ class ContactsContainer extends Component {
       return(
         <ContactTile
           key={c.id}
+          id={c.id}
           firstName={c.first_name}
           lastName={c.last_name}
           email={c.email}
           phone={c.phone}
           company={c.company}
           tileClass='contact-tile'
+          deleteContact={this.deleteContact}
         />
       )
     })
@@ -108,6 +121,7 @@ class ContactsContainer extends Component {
               phone='Phone'
               company='Company'
               tileClass='contact-tile-header'
+              deleteContact=''
             />
           </div>
           <div className='cell contact-list'>

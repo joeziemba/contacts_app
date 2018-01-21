@@ -8,4 +8,9 @@
   margin-right: 10px;
   border-radius: 4px;
   transition: all 0.1s ease-in;
+
+  &:hover {
+    color: #efefef;
+    background-color: $dark-blue;
+  }
 }

@@ -19,13 +19,29 @@
 
 .button {
   @include button-base;
-  &:hover {
-    color: #efefef;
-    background-color: $dark-blue;
-  }
 }
 
 .active {
   color: #efefef;
   background-color: $dark-blue;
+}
+
+.delete-button {
+  @include button-base;
+  font-size: 10px;
+  padding: 1px 5px;
+  color: #efefef;
+  border-color: $alert-color;
+  display: none;
+  background-color: $alert-color;
+
+  &:hover {
+    background-color: $alert-color;
+  }
+}
+
+.delete:hover {
+  .delete-button {
+    display: inline-block;
+  }
 }
