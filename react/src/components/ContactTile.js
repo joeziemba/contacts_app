@@ -1,7 +1,13 @@
 import React from 'react';
 
 const ContactTile = (props) => {
-
+  let deleteButton = () => {
+    return(
+      <div className='delete-button'>
+        Delete
+      </div>
+    )
+  }
   return(
     <div className={`grid-x ${props.tileClass}`}>
       <div className='cell medium-2'>
@@ -16,8 +22,11 @@ const ContactTile = (props) => {
       <div className='cell medium-2'>
         {props.phone}
       </div>
-      <div className='cell medium-3'>
+      <div className='cell medium-2'>
         {props.company}
+      </div>
+      <div className='cell medium-1 delete'>
+        {!props.tileClass.includes('header') ? deleteButton() : 'Delete'}
       </div>
     </div>
 
