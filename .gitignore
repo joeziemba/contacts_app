@@ -24,6 +24,5 @@ package-lock.json
 react/coverage
 .env
 /public/assets
-app/jobs/
-app/channels/
-app/mailers/
+ziemba-app.bundle
+/bundle-test
