@@ -3,7 +3,7 @@ import React from 'react';
 const ContactTile = (props) => {
   let deleteButton = () => {
     return(
-      <div className='delete-button'>
+      <div className='delete-button' id={props.id} onClick={props.deleteContact}>
         Delete
       </div>
     )

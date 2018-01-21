@@ -1,5 +1,5 @@
 class Api::V1::ContactsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :update]
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
 
   def index
     @contacts = Contact.all
@@ -13,6 +13,12 @@ class Api::V1::ContactsController < ApplicationController
     else
       render json: { errors: newContact.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    contact = Contact.find(params[:id])
+    contact.destroy
+    render json: { message: 'Contact deleted' }
   end
 
   private

@@ -23,7 +23,6 @@ class SubmissionForm extends Component {
   // Custom Methods
 
   clearForm() {
-    debugger
     this.setState({
       firstName: '',
       lastName: '',
@@ -59,13 +58,10 @@ class SubmissionForm extends Component {
     })
     .then(response => this.processResponse(response))
     .then(body => {
-      debugger
       this.clearForm()
-      debugger
       this.props.getContacts()
     })
     .catch(body => {
-      debugger;
       this.setState({
         errors: body.data.errors
       })
