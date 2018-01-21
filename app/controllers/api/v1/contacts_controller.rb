@@ -2,7 +2,11 @@ class Api::V1::ContactsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :destroy]
 
   def index
-    @contacts = Contact.all
+    if Contact.all.length == 0
+      @contacts = { id: 0 }
+    else
+      @contacts = Contact.all
+    end
     render json: @contacts
   end
 
