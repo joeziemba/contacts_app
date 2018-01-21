@@ -73,7 +73,7 @@ describe Api::V1::ContactsController, type: :controller do
       expect(response.header['Content-Type']).to include 'application/json'
     end
 
-    it "should save to the dataallow an email, phone number and company name" do
+    it "should save to the database with an email, phone number and company name" do
       count = Contact.all.count
       post :create, params: {
         contact: {
@@ -86,6 +86,17 @@ describe Api::V1::ContactsController, type: :controller do
       }
 
       expect(Contact.all.count).to be > count
+    end
+
+  end
+
+  describe 'DELETE#destory' do
+    it "should delete the contact with id passed in params" do
+      count = Contact.all.count
+      delete :destroy, params: { id: testContact.id }
+      
+      expect(Contact.all.count).to be < count
+      expect{Contact.find(testContact.id)}.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
