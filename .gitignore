@@ -24,6 +24,6 @@ package-lock.json
 react/coverage
 .env
 /public/assets
-app/jobs
-app/channels
-app/mailers
+app/jobs/
+app/channels/
+app/mailers/
