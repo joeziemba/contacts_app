@@ -4,14 +4,19 @@ import React, { Component } from 'react';
 // Component Imports
 import ContactTile from '../components/ContactTile';
 import SubmissionForm from './Form';
+import ContactFilter from '../components/ContactFilter'
 
 class ContactsContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      contacts: []
+      contacts: [],
+      filterEmail: false,
+      sortEmail: false
     }
     this.getContacts = this.getContacts.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
+    this.toggleSort = this.toggleSort.bind(this);
   }
 
   // Custom Methods
@@ -26,14 +31,41 @@ class ContactsContainer extends Component {
     })
   }
 
-  // Lifecycle Methods
-
-  componentDidMount() {
-    this.getContacts()
+  toggleFilter() {
+    this.setState({
+      filterEmail: !this.state.filterEmail
+    })
   }
 
-  render() {
-    let contactList = this.state.contacts.map(c => {
+  toggleSort() {
+    this.setState({
+      sortEmail: !this.state.sortEmail
+    })
+  }
+
+  renderContacts() {
+    let allContacts = this.state.contacts;
+
+    if(this.state.filterEmail){
+      allContacts = allContacts.filter(c => {
+        return c.email.includes('.com')
+      })
+    }
+    if(this.state.sortEmail) {
+      allContacts = allContacts.sort((a,b) => {
+        if(a.email < b.email) return -1
+        if(a.email > b.email) return 1
+        return 0
+      })
+    } else {
+      allContacts = allContacts.sort((a,b) => {
+        if(a.id < b.id) return -1
+        if(a.id > b.id) return 1
+        return 0
+      })
+    }
+
+    let output = allContacts.map(c => {
       return(
         <ContactTile
           key={c.id}
@@ -46,10 +78,26 @@ class ContactsContainer extends Component {
         />
       )
     })
+    return output
+  }
+
+  // Lifecycle Methods
+
+  componentDidMount() {
+    this.getContacts()
+  }
+
+  render() {
     return(
       <div className='wrapper'>
         <SubmissionForm
           getContacts={this.getContacts}
+        />
+        <ContactFilter
+          filterFunction={this.toggleFilter}
+          sortFunction={this.toggleSort}
+          filter={this.state.filterEmail}
+          sort={this.state.sortEmail}
         />
         <div className='grid-x' id='contact-container'>
           <div className='cell'>
@@ -63,8 +111,7 @@ class ContactsContainer extends Component {
             />
           </div>
           <div className='cell contact-list'>
-
-            {contactList}
+            {this.renderContacts()}
           </div>
         </div>
       </div>

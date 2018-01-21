@@ -1,0 +1,11 @@
+@mixin button-base {
+  cursor: pointer;
+  padding: 10px 14px;
+  border: 1px solid $dark-blue;
+  display: inline-block;
+  color: $dark-blue;
+  font-size: 14px;
+  margin-right: 10px;
+  border-radius: 4px;
+  transition: all 0.1s ease-in;
+}

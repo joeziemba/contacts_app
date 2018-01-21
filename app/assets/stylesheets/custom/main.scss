@@ -1,4 +1,6 @@
 @import 'vars';
+@import 'mixins';
+@import 'COntactFilter';
 @import 'ContactsContainer';
 @import 'ContactTile';
 @import 'TextField';
@@ -13,4 +15,17 @@
   color: #bcbcbc;
   text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.5);
   text-align: center;
+}
+
+.button {
+  @include button-base;
+  &:hover {
+    color: #efefef;
+    background-color: $dark-blue;
+  }
+}
+
+.active {
+  color: #efefef;
+  background-color: $dark-blue;
 }
