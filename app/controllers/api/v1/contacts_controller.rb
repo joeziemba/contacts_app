@@ -2,7 +2,7 @@ class Api::V1::ContactsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :destroy]
 
   def index
-    if Contact.all.length == 0
+    if Contact.all.empty?
       @contacts = { id: 0 }
     else
       @contacts = Contact.all
@@ -11,11 +11,11 @@ class Api::V1::ContactsController < ApplicationController
   end
 
   def create
-    newContact = Contact.new(contact_params)
-    if newContact.save
-      render json: newContact
+    new_contact = Contact.new(contact_params)
+    if new_contact.save
+      render json: new_contact
     else
-      render json: { errors: newContact.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: new_contact.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -35,5 +35,5 @@ class Api::V1::ContactsController < ApplicationController
       :phone,
       :company
     )
-    end
+  end
 end
